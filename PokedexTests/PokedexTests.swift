@@ -11,24 +11,32 @@ import XCTest
 
 class PokedexTests: XCTestCase {
 
-    override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
+    //MARK: Pokemon Class Tests
+    // Confirm that the Pokemon initializer returns a Pokemon object when passed valid parameters.
+    func testPokemonInitializationSucceeds() {
+        // First Pokemon
+        let firstPokemon = Pokemon.init(name: "Bulbassaur", number: 1, photo: nil)
+        XCTAssertNotNil(firstPokemon)
 
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        // Last Pokemon
+        let lastPokemon = Pokemon.init(name: "Mew", number: 151, photo: nil)
+        XCTAssertNotNil(lastPokemon)
     }
+    
+    // Confirm that the Meal initialier returns nil when passed a invalid number or an empty name.
+    func testPokemonInitializationFails() {
+        // Negative Pokemon
+        let negativePokemon = Pokemon.init(name: "Negative", number: -1, photo: nil)
+        XCTAssertNil(negativePokemon)
+        
+        // Empty String
+        let emptyStringPokemon = Pokemon.init(name: "", number: 1, photo: nil)
+        XCTAssertNil(emptyStringPokemon)
+        
+        // Out of range
+        let outOfRangePokemon = Pokemon.init(name: "OutOfRange", number: 152, photo: nil)
+        XCTAssertNil(outOfRangePokemon)
 
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
     }
 
 }
